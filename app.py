@@ -5,6 +5,11 @@ from sqlalchemy.engine.url import URL
 from models import db
 from resources import CommunityPostList 
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logging.getLogger(__name__).setLevel('INFO')
+
 def get_postgres_parameters():
     host = os.environ.get('POSTGRES_HOST')
     password = os.environ.get('POSTGRES_PASSWORD')
@@ -39,7 +44,7 @@ def run_app():
         logging.info(f'MH API starts running')
         app.run(host='0.0.0.0', threaded=True)
     except Exception as e:
-    	raise('Error', e)
+    	logging.info('Error:', e)
 
 
 def add_resource(api):

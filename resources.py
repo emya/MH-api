@@ -9,11 +9,6 @@ logging.getLogger(__name__).setLevel('INFO')
 
 class CommunityPostList(Resource):
     def get(self, uid):
-        """
-        Function for GET method
-        Return all data of a given o_id(string)
-        Endpoint is /sequence_ab_test/o_id
-        """
         try:
             schema = CommunityPostSchema()
             logging.info(f'Querying CommunityPost with uid: {uid}')
