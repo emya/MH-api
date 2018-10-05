@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from sqlalchemy import and_, or_
 from schemas import CommunityPostSchema
-from models import CommunityPost
+from models import CommunityPost, CommunityMember
 
 import logging
 
@@ -13,17 +13,7 @@ class CommunityPostList(Resource):
     def get(self, uid):
         try:
             schema = CommunityPostSchema()
-            logging.info(f'Querying CommunityPost with uid: {uid}')
-            results_set = CommunityPost.query.filter_by(uid=uid).all()
-            results_set = CommunityPost.query.filter(
-                    or_(
-                        CommunityPost.public_flag == True,
-                        and_(
-                            CommunityPost.public_flag == False,
-                            CommunityPost.uid <= p_value
-                        )
-                    )
-                ).all()
+            logging.info('Querying CommunityPost with uid: %s' % uid)
 
             from flask_sqlalchemy import SQLAlchemy
             db = SQLAlchemy()
@@ -33,7 +23,7 @@ class CommunityPostList(Resource):
                         CommunityMember.uid1 == uid,
                         CommunityMember.uid2 == uid,
                         )
-                    )
+                    ),
                     CommunityMember.status == 2
                 ).all()
                         

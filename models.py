@@ -15,8 +15,6 @@ class CommunityPost(db.Model):
     shares = db.Column(db.Integer)
     hatsoffs = db.Column(db.Integer)
     public_flag = db.Column(db.Boolean)
-    shared_upcoming = db.Column(db.String) # id of shared upcoming
-    shared_portfolio = db.Column(db.String) # id of shared portfolio 
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 

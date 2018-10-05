@@ -16,7 +16,5 @@ class CommunityPostSchema(Schema):
     shares = fields.Integer()
     hatsoffs = fields.Integer()
     public_flag = fields.Boolean()
-    shared_upcoming = fields.String() # id of shared upcoming
-    shared_portfolio = fields.String() # id of shared portfolio 
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
