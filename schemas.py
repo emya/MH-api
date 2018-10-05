@@ -10,3 +10,11 @@ class CommunityPostSchema(Schema):
 
     id = fields.UUID()
     uid = fields.String(required=True)
+    content = fields.String()
+    image = fields.Boolean()
+    likes = fields.Integer()
+    shares = fields.Integer()
+    hatsoffs = fields.Integer()
+    public_flag = fields.Boolean()
+    created_at = fields.DateTime()
+    updated_at = fields.DateTime()

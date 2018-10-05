@@ -41,7 +41,7 @@ def create_app():
 def run_app():
     try:
         app = create_app()
-        logging.info(f'MH API starts running')
+        logging.info('MH API starts running')
         app.run(host='0.0.0.0', threaded=True)
     except Exception as e:
     	logging.info('Error:', e)
