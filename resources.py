@@ -3,6 +3,7 @@ from flask import request
 from sqlalchemy import and_, or_
 
 from flask_sqlalchemy import SQLAlchemy
+
 from schemas import CommunityPostSchema
 from models import CommunityPost, CommunityMember
 
@@ -19,6 +20,8 @@ class CommunityPostList(Resource):
         try:
             schema = CommunityPostSchema()
             logging.info('Querying CommunityPost with uid: %s' % uid)
+
+            from flask_sqlalchemy import SQLAlchemy
 
             db = SQLAlchemy()
             friend_ls = db.Session.query(CommunityMember.uid1, CommunityMember.uid2).filter(
