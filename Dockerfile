@@ -1,7 +1,7 @@
 FROM python:3.6
 
-ENV POSTGRES_HOST=myNetwork\
-    POSTGRES_PASSWORD=postgres
+ENV POSTGRES_HOST=localhost\
+    POSTGRES_PASSWORD=password
 
 RUN mkdir -p /opt
 WORKDIR /opt
@@ -13,7 +13,5 @@ RUN set -ex; \
 ADD . /opt
 
 RUN pip install -r requirements.txt
-
-EXPOSE 5432
 
 CMD ["python", "-u", "/opt/app.py"]
