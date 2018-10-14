@@ -1,12 +1,24 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import UUID
+from flask import Flask, current_app
 
 from uuid import uuid4
 
+from flask_migrate import Migrate
+
 db = SQLAlchemy()
+
+"""
+app = Flask(__name__)
+
+with app.app_context():
+    migrate = Migrate(app, db)
+    #migrate = Migrate(current_app, db)
+"""
 
 # TODO: Add other columns
 class CommunityPost(db.Model):
+    __tablename__ = 'community_post'
     id = db.Column(UUID(as_uuid=True), default=uuid4, primary_key=True)
     uid = db.Column(db.String)
     content = db.Column(db.String(200))
@@ -19,6 +31,7 @@ class CommunityPost(db.Model):
     updated_at = db.Column(db.DateTime)
 
 class CommunityComment(db.Model):
+    __tablename__ = 'community_comment'
     id = db.Column(db.String, primary_key=True)
     uid = db.Column(db.String)
     content = db.Column(db.String(200))
@@ -27,6 +40,7 @@ class CommunityComment(db.Model):
     updated_at = db.Column(db.DateTime)
 
 class CommunityMember(db.Model):
+    __tablename__ = 'community_member'
     id = db.Column(db.String, primary_key=True)
     uid1 = db.Column(db.String)
     uid2 = db.Column(db.String)
@@ -36,4 +50,15 @@ class CommunityMember(db.Model):
     status = db.Column(db.Integer)
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
+
+class Activity(db.Model):
+    __tablename__ = 'activity'
+    id = db.Column(db.String, primary_key=True)
+    uid = db.Column(db.String)
+    # 1: like, 2: share
+    content_type = db.Column(db.Integer)
+    content_id = db.Column(db.String)
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+
 

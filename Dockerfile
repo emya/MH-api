@@ -6,7 +6,8 @@ ENV POSTGRES_HOST=localhost\
 RUN mkdir -p /opt
 WORKDIR /opt
 
-RUN set -ex;
+
+RUN set -ex; \
     pip install --upgrade pip;
 
 ADD . /opt

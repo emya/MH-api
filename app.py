@@ -32,6 +32,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = URL(**postgres_db)
 
     db.init_app(app)
+
     api = Api(app)
     add_resource(api)
 
@@ -50,9 +51,16 @@ def run_app():
 def add_resource(api):
     api.add_resource(
         CommunityPostList,
-        '/community_post/<string:uid>'
+        '/communitypost/<string:uid>'
     )
 
+app = create_app()
 
 if __name__ == '__main__':
+    logging.info('MH API starts running')
+    app.run(host='0.0.0.0', threaded=True)
+
+"""
+if __name__ == '__main__':
     run_app()
+"""
