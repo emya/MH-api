@@ -10,8 +10,8 @@ with app.app_context():
     print(current_app.config, type(current_app.config))
     print(current_app.config.__dict__, type(current_app.config))
 
-app.config.from_object(os.environ['APP_SETTINGS'])
-#print(app.__dict__['SQLALCHEMY_DATABASE_URI'])
+app.config.from_object('config.Config')
+#app.config.from_object(os.environ['APP_SETTINGS'])
 
 migrate = Migrate(app, db)
 manager = Manager(app)
