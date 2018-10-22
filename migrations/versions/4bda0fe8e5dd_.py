@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.String(), nullable=False),
     sa.Column('activity_type', sa.Integer(), nullable=True),
     sa.Column('content_type', sa.Integer(), nullable=True),
-    sa.Column('content_id', sa.Integer(), nullable=True),
+    sa.Column('content_id', sa.String(), nullable=True),
     sa.Column('uid', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
