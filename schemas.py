@@ -33,3 +33,4 @@ class ActivitySchema(Schema):
     content_id = fields.String()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
+
