@@ -105,14 +105,22 @@ class ActivityList(Resource):
             activity_type = int(request.args.get('activity', default="1"))
             content_type = int(request.args.get('content', default="1"))
             content_id = request.args.get('content_id')
-            created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            new_post = Activity(id=uuid4(), uid=uid, activity_type=activity_type, content_type=content_type,
-                                content_id=content_id, created_at=created_at, updated_at=None)
+            disable_flag = request.args.get('disable')
 
-            db = SQLAlchemy()
-            db.session.add(new_post)
-            db.session.commit()
-            db.session.close()
+            if disable_flag:
+                Activity.query.filter_by(uid=uid, activity_type=activity_type,
+                                         content_type=content_type, content_id=content_id,).delete()
+
+
+            else:
+                created_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                new_post = Activity(id=uuid4(), uid=uid, activity_type=activity_type, content_type=content_type,
+                                    content_id=content_id, created_at=created_at, updated_at=None)
+
+                db = SQLAlchemy()
+                db.session.add(new_post)
+                db.session.commit()
+                db.session.close()
         except Exception as e:
             logging.info("Exception:", e)
 

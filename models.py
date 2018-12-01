@@ -55,8 +55,9 @@ class Activity(db.Model):
     __tablename__ = 'activity'
     id = db.Column(db.String, primary_key=True)
     uid = db.Column(db.String)
-    # 1: like, 2: share
+    # 1: like, 2: share, 3: hatsoff
     activity_type = db.Column(db.Integer)
+    # 1: community post
     content_type = db.Column(db.Integer)
     content_id = db.Column(db.String)
     created_at = db.Column(db.DateTime)

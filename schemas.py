@@ -4,7 +4,7 @@ from marshmallow_jsonapi import Schema, fields
 class CommunityPostSchema(Schema):
     class Meta:
         type_ = 'community_post'
-        self_url = '/communitypost/{id}'
+        self_url = '/community/post/{id}'
         self_url_kwargs = {'id': '<id>'}
         strict = True
 
