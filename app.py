@@ -3,7 +3,7 @@ from flask import Flask
 from flask_restful import Api
 from sqlalchemy.engine.url import URL
 from models import db
-from resources import CommunityPostList 
+from resources import CommunityPostList, ActivityList, FriendList
 
 import logging
 
@@ -51,8 +51,19 @@ def run_app():
 def add_resource(api):
     api.add_resource(
         CommunityPostList,
-        '/communitypost/<string:uid>'
+        '/community/post/<string:uid>'
     )
+
+    api.add_resource(
+        ActivityList,
+        '/activity/<string:uid>'
+    )
+
+    api.add_resource(
+        FriendList,
+        '/friends/<string:uid>'
+    )
+
 
 app = create_app()
 
